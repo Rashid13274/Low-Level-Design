@@ -24,7 +24,9 @@ const throttlingMiddleware = (req, res, next) => {
   }
 
   const timeElapsed = currentTime - rateLimitStore[ip].startTime;
-  console.log(timeElapsed)
+  console.log('currentTime', currentTime);
+  console.log('rateLimitStore[ip].startTime', rateLimitStore[ip].startTime)
+  console.log('timeElapsed', timeElapsed)
 
   if (timeElapsed > TIME_WINDOW) {
     // Reset the counter after time window

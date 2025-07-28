@@ -76,3 +76,42 @@ next();
 3. Route handler → Response
 
 The `next()` function ensures the request flows through all middleware until it reaches the final route handler.
+
+
+# isDelayed Explained:-
+
+The isDelayed flag in your code is used to prevent repeatedly setting the delay timer and spamming the client with "Too many requests" responses during the delay period.
+
+How isDelayed Works Step by Step
+Initial State:
+
+isDelayed is false for a new IP or after the time window resets.
+When Requests Exceed Limit:
+
+If the client exceeds MAX_REQUESTS within the TIME_WINDOW, the code checks isDelayed.
+If isDelayed is false, it sets isDelayed to true and starts a timer (setTimeout) for DELAY_TIME (2 seconds).
+During this delay, any further requests will immediately get a 429 response, but the timer is not reset or restarted.
+After Delay:
+
+When the timer completes, isDelayed is set back to false.
+The client can try again (but if still over the limit, the process repeats).
+Why Use isDelayed?
+Prevents multiple timers: Without isDelayed, every extra request would start a new timer, causing unpredictable behavior.
+Ensures a single delay period: Only one delay is enforced at a time for each IP.
+Example Flow
+User makes 6th request in 10 seconds:
+
+isDelayed is false
+Set isDelayed = true
+Start 2-second timer
+Respond with 429
+User makes 7th, 8th, 9th requests during delay:
+
+isDelayed is true
+Respond with 429 (no new timer started)
+After 2 seconds:
+
+isDelayed is set to false
+User can try again
+Summary:
+isDelayed ensures that only one delay timer is active per IP at a time, preventing repeated delays and unnecessary resource usage
