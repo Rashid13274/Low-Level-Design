@@ -136,6 +136,9 @@ docker run -d \
     mongo
 ```
 
+### Connection String in MongoDB compass:-
+`mongodb://admin:qwerty@localhost:27017/?authSource=admin`
+
 ### 2. Run mongo-express Container
 
 ```sh
@@ -165,3 +168,24 @@ docker run -d \
 
 In a real-world scenario, your application (e.g., `docker-testapp`) can connect to a Docker container to use the technology (like MongoDB) inside your existing application stack.
 
+
+#  # Docker Command
+ * docker pull image_name: version  -> to pull/ download the image
+ * docker images  -> to check all  the downloaded images.
+ * docker run -d image_name (-d => detachment means run this image in background).
+ * docker run -it ununtu ->  ( -it interactive mode , means we can input and output anything in ubuntu env.).
+ * docker run image_name -> to run docker container.
+ * docker ps -a -> list out all the container in docker
+ * docker ps  -> list out all the running container.
+ * docker stop container_name or containerId -> we can stop the existing container.
+ * docker start container_name or containerId -> we can restart the existing container.
+ * docker rmi image_name -> to remove or destroy the image.
+ * docker rm container_name -> to remove or destroy the container name.
+ for eg.  
+ => to remove the hello-world image, we need to delete the if existing container,
+  1. docker rm container_id or container_namer,
+  2. docker rmi image_name or image_id.
+
+
+ # To run  MySQL container: 
+docker run  -d -e MYSQL_ROOT_PASSWORD=secret-password  --name older_mysql  mysql:8.0  =>  ( --name older_mysql -> is custom name,  -e -> e stand for environment, this is command to run mysql container).
