@@ -1,5 +1,27 @@
 # Redis 101: A Beginner's Guide
 
+
+## Redis-Docker Setup:
+```bash
+docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+```
+* 👉 On this port our Redis actually runs: **6379:6379**
+* 👉 On this port we visualize our Redis: **8001**
+---
+## 🖥️ Accessing Redis CLI
+```bash
+docker exec -it container_id(3c696059510edbd8066f3fc477bb9b819cedd9bbf0b9d7f13222bf9c6e8dffa2). bash
+```
+Then enter the Redis CLI:
+```bash
+redis-cli
+```
+Test the connection:
+```bash
+ping
+# → pong
+```
+---
 ## 1. What is Redis?
 Redis (Remote Dictionary Server) is an open-source, in-memory data structure store used as a database, cache, message broker, and streaming engine. It supports versatile data structures, offers sub-millisecond latency, and is designed for high-performance applications.
 
